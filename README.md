@@ -25,5 +25,5 @@ black main.py
 - [ ] Fine tuning en ChatOpenAI
 - [ ] Fine tuning en vectordb.similarity_search
 - [ ] Contenerizar
-- [ ] Adaptar a API y crear contenedor de UI 
+- [ ] Adaptar a API y crear contenedor de UI (con logo de universidad y textarea)
 - [ ] Actualizar embedings automaticamente (quitar botón)
