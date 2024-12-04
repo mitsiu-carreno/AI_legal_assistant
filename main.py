@@ -30,9 +30,9 @@ def actualizar_embeddings():
     return vectordb
 
 
-st.title("Chat de consulta sobre Pokémon Mundo Misterioso")
+st.title("Chat de consulta sobre Legalidad y Protección de la Información")
 st.write(
-    "Este es un chat que responde preguntas sobre la guía de pokémon mundo misterioso"
+    "Este es un chat que responde preguntas sobre legalidad y protección de la información"
 )
 
 if st.button("Actualizar Embeddings"):
@@ -48,7 +48,7 @@ prompt = PromptTemplate.from_template(prompt_template)
 llm = ChatOpenAI(model="gpt-3.5-turbo", max_tokens=1024, api_key=openai_api_key)
 qa_chain = prompt | llm
 
-pregunta = st.text_area("Haz tu pregunta sobre el juego de pokémon mundo misterioso")
+pregunta = st.text_area("Haz tu pregunta sobre la legalidad y protección de la información")
 
 if st.button("Enviar"):
     if pregunta:
