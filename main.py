@@ -17,8 +17,7 @@ def clean_text(text):
     # Normalizar texto para eliminar acentos y caracteres especiales
     text = unicodedata.normalize('NFD', text).encode('ascii', 'ignore').decode('utf-8')
     # Eliminar caracteres especiales innecesarios y múltiples espacios
-    text = re.sub(r'[^\w\s
-.,;:\-\[\]\- \ -]', '', text)
+    text = re.sub(r'[^\w\s.,;:\-\[\]\- \-]', '', text)
     text = re.sub(r'\.{2,}', '', text)
     text = re.sub(r'\s+', ' ', text)
     # Eliminar espacios innecesarios al inicio y al final
