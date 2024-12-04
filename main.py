@@ -40,7 +40,7 @@ def actualizar_embeddings():
         documentos.extend(docs)
 
     # Dividir los documentos en fragmentos más pequeños que puedan ser manejables
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50, separators=["\n", ". ", "? ", "! ", "- "])
     chunked_documents = text_splitter.split_documents(documentos)
 
     # Crear la base de datos de vectores a partir de los documentos
