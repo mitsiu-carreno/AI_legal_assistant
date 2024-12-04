@@ -11,11 +11,17 @@ load_dotenv()
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
-
 def actualizar_embeddings():
-    ruta_pdf = "./data/decalogo.pdf"
-    loader = PyPDFLoader(ruta_pdf)
-    docs = loader.load()
+    ruta_data = "./data"
+    archivos_pdf = [f for f in os.listdir(ruta_data) if f.endswith(".pdf")]
+
+    # Leer todos los archivos PDF en la carpeta /data
+    documentos = []
+    for archivo in archivos_pdf:
+        ruta_pdf = os.path.join(ruta_data, archivo)
+        loader = PyPDFLoader(ruta_pdf)
+        docs = loader.load()
+        documentos.extend(docs)
 
     # Dividir el documento en fragmentos más pequeños que puedan ser manejables
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
