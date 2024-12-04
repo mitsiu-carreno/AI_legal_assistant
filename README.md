@@ -20,7 +20,7 @@ black main.py
 # Pending tasks
 - [x] Quitar tematica de Pokemon 
 - [x] Agregar documentos en /data
-- [ ] Función actualizar_embeddings debe leer todos los archivos en /data
+- [x] Función actualizar_embeddings debe leer todos los archivos en /data
 - [ ] Fine tuning en RecursiveCharacterTextSplitter
 - [ ] Fine tuning en ChatOpenAI
 - [ ] Fine tuning en vectordb.similarity_search
