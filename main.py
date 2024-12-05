@@ -6,21 +6,44 @@ from langchain.prompts import PromptTemplate
 import streamlit as st
 import os
 from dotenv import load_dotenv
+import re
+import unicodedata
 
 load_dotenv()
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
+def clean_text(text):
+    # Normalizar texto para eliminar acentos y caracteres especiales
+    text = unicodedata.normalize('NFD', text).encode('ascii', 'ignore').decode('utf-8')
+    # Eliminar caracteres especiales innecesarios y múltiples espacios
+    text = re.sub(r'[^\w\s.,;:\-\[\]\- \-]', '', text)
+    text = re.sub(r'\.{2,}', '', text)
+    text = re.sub(r'\s+', ' ', text)
+    # Eliminar espacios innecesarios al inicio y al final
+    text = text.strip()
+    return text
 
 def actualizar_embeddings():
-    ruta_pdf = "./data/decalogo.pdf"
-    loader = PyPDFLoader(ruta_pdf)
-    docs = loader.load()
+    ruta_data = "./data"
+    archivos_pdf = [f for f in os.listdir(ruta_data) if f.endswith(".pdf")]
 
-    # Dividir el documento en fragmentos más pequeños que puedan ser manejables
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50)
-    chunked_documents = text_splitter.split_documents(docs)
+    # Leer todos los archivos PDF en la carpeta /data
+    documentos = []
+    for archivo in archivos_pdf:
+        ruta_pdf = os.path.join(ruta_data, archivo)
+        loader = PyPDFLoader(ruta_pdf)
+        docs = loader.load()
+        for doc in docs:
+            # Limpiar el texto de cada documento antes de agregarlo
+            doc.page_content = clean_text(doc.page_content)
+        documentos.extend(docs)
 
+    # Dividir los documentos en fragmentos más pequeños que puedan ser manejables
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=50, separators=["\n", ". ", "? ", "! ", "- "])
+    chunked_documents = text_splitter.split_documents(documentos)
+
+    # Crear la base de datos de vectores a partir de los documentos
     vectordb = Chroma.from_documents(
         chunked_documents,
         OpenAIEmbeddings(model="text-embedding-3-large", api_key=openai_api_key),
