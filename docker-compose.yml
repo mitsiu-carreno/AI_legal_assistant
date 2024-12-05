@@ -1,0 +1,30 @@
+services:
+  chat_server:
+    build:
+      context: ./server
+      dockerfile: containerfile
+    container_name: chat_server
+    ports:
+      - "8000:8000"
+    networks:
+      - chat_network
+    env_file: 
+      - ./server/.env  # Carga las variables desde el archivo .env
+    command: uvicorn server:app --host 0.0.0.0 --port 8000
+
+  flutter_app:
+    build:
+      context: ./chat/
+      dockerfile: containerfile
+    container_name: chat
+    ports:
+      - "8080:8080"
+    networks:
+      - chat_network
+    command: bash -c "flutter build web && python3 -m http.server 8080 --directory build/web"
+    volumes:
+      - ./chat:/tf:Z
+
+networks:
+  chat_network:
+    driver: bridge

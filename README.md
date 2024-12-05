@@ -21,9 +21,9 @@ black main.py
 - [x] Quitar tematica de Pokemon 
 - [x] Agregar documentos en /data
 - [x] Función actualizar_embeddings debe leer todos los archivos en /data
-- [ ] Fine tuning en RecursiveCharacterTextSplitter
+- [x] Fine tuning en RecursiveCharacterTextSplitter
 - [ ] Fine tuning en ChatOpenAI
 - [ ] Fine tuning en vectordb.similarity_search
-- [ ] Contenerizar
-- [ ] Adaptar a API y crear contenedor de UI (con logo de universidad y textarea)
-- [ ] Actualizar embedings automaticamente (quitar botón)
+- [x] Contenerizar
+- [x] Adaptar a API y crear contenedor de UI (con logo de universidad y textarea)
+- [x] Actualizar embedings automaticamente (quitar botón)
