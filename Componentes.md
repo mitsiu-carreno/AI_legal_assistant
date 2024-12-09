@@ -40,7 +40,10 @@ avanzados.
 ## Referencias
 ------------
 >https://www.langchain.com/
+
 >https://www.docker.com/
+
 >https://flutter.dev/
+
 >https://fastapi.tiangolo.com/
 
