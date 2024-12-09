@@ -33,7 +33,8 @@ Este proyecto tiene como objetivo desarrollar un asistente legal basado en intel
    - **Contenedor Front-End**: Implementa Flutter para la interfaz.
 
 ## Diagrama del Sistema
-!Diagrama
+![image](https://github.com/user-attachments/assets/0a6496ef-8d08-475c-a579-cb053fbb1c53)
+
 
 ## Conclusión
 El proyecto combina herramientas modernas para ofrecer un asistente legal confiable y seguro. A través de la integración de tecnologías avanzadas como GPT y Docker, este sistema está diseñado para manejar grandes volúmenes de datos legales y ofrecer respuestas precisas en tiempo real.
